@@ -27,10 +27,7 @@ def main():
 
         # Cria uma instância do cliente Kubernetes
         api = client.AppsV1Api()
-<<<<<<< HEAD
         autoscaling_api = client.AutoscalingV1Api()
-=======
->>>>>>> 8bab8c4c6428d7b2d7398c3c278754759458a2b6
 
         if namespace:
             deployments = api.list_namespaced_deployment(namespace).items
@@ -51,17 +48,12 @@ def main():
             except AttributeError:
                 core_limit = 'N/A'
                 memory_limit = 'N/A'
-<<<<<<< HEAD
 
             # Busca as informações do HPA associado ao deployment
             hpa = autoscaling_api.read_namespaced_horizontal_pod_autoscaler(name=name, namespace=namespace)
             min_replicas = hpa.spec.min_replicas
             max_replicas = hpa.spec.max_replicas
 
-=======
-            min_replicas = deployment.spec.replicas
-            max_replicas = deployment.spec.replicas
->>>>>>> 8bab8c4c6428d7b2d7398c3c278754759458a2b6
             table.add_row([name, context, core_limit, memory_limit, min_replicas, max_replicas])
 
         # Exibe a tabela
@@ -77,9 +69,3 @@ def main():
             continue
         else:
             break
-<<<<<<< HEAD
-=======
-
->>>>>>> 8bab8c4c6428d7b2d7398c3c278754759458a2b6
-if __name__ == '__main__':
-    main()
